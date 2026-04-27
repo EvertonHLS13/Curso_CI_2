@@ -16,7 +16,7 @@ jobs:
         uses: docker/login-action@v4.1.0
         with:
           username: evertonhls
-          password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+          password: ${{ secrets.PASS_DOCKER }}
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
