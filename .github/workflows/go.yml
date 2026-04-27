@@ -50,12 +50,15 @@ jobs:
       - name: Run tests
         run: go test ./...
 
+      - name: Build binary
+        run: go build -o ./build/programa ./...
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: programa
           path: ./build
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 7
 
   docker:
