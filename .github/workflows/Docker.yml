@@ -1,4 +1,4 @@
-name: Docker work
+name: Docker
 
 on:
   workflow_call:
