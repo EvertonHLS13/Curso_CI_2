@@ -1,4 +1,4 @@
-name: Go Ci
+name: Go CI
 
 on:
   push:
@@ -37,7 +37,8 @@ jobs:
           --health-retries=5
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -53,14 +54,8 @@ jobs:
       - name: Build binary
         run: mkdir -p build && go build -o build/programa .
 
-      - name: Upload a Build Artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: programa
-          path: ./build
-          if-no-files-found: error
-          retention-days: 7
-
-  docker:
-    needs: test
-    uses: ./.github/workflows/Docker.yml
+          name: programa-binario
+          path: build/programa
