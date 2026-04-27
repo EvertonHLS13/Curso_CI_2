@@ -1,26 +1,25 @@
-name: Docker work
+name: Docker Build
 
 on:
-  workflow_call:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Docker Build
-        uses: docker/setup-buildx-action@v2
-
-      - name: Docker Login
+      - name: Login to Docker Hub
         uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build e Push da imagem
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/meu-programa:latest
+          tags: your-dockerhub-user/your-image:latest
