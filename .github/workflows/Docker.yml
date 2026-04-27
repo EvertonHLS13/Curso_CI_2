@@ -20,6 +20,15 @@ jobs:
       - name: Check username
         run: echo "${{ secrets.DOCKER_USERNAME }}"
 
+      - name: Check password presence
+        run: |
+          if [ -z "${{ secrets.PASSWORD_DOCKER_HUB }}" ]; then
+            echo "Password secret is not set!"
+            exit 1
+          else
+            echo "Password secret is available."
+          fi
+
       - name: Docker Login
         uses: docker/login-action@v4.1.0
         with:
