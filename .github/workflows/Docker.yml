@@ -29,4 +29,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: evertonhls/go_ci:${{ github.ref_name }}
+          tags: evertonhls/go_ci:latest,evertonhls/go_ci:${{ github.sha }}
