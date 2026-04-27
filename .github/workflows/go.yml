@@ -18,8 +18,8 @@ jobs:
        
     strategy:
       matrix:
-        go_version: ['1.21', '1.20']   # atualizado para versões mais recentes
-        os: ['ubuntu-latest', 'ubuntu-22.04']  # substituí 18.04 por 22.04
+        go_version: ['1.21', '1.20']
+        os: ['ubuntu-latest', 'ubuntu-22.04']
 
     services:
       postgres:
@@ -53,7 +53,7 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: artifact
+          name: programa
           path: ./build
           if-no-files-found: warn
           retention-days: 7
